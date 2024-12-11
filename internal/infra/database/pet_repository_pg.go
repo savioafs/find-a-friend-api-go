@@ -32,7 +32,7 @@ func (r *PetRepositoryPG) Save(pet *entity.Pet) error {
 	return nil
 }
 
-func (r *PetRepositoryPG) GetPetByID(id string) (*entity.Pet, error) {
+func (r *PetRepositoryPG) FindPetByID(id string) (*entity.Pet, error) {
 	stmt, err := r.DB.Prepare("SELECT id, org_id, name, about, age, size, energy_level, dependency_level, enviroment, photos, requiriments_for_adoption FROM pets WHERE id = $1")
 	if err != nil {
 		return nil, err

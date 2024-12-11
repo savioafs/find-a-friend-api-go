@@ -39,7 +39,7 @@ func (u *CreatePetUseCase) Execute(input dto.PetInputDTO) (dto.PetOutputDTO, err
 		return dto.PetOutputDTO{}, err
 	}
 
-	org, err := u.OrgRepository.FindByID(pet.OrgID)
+	org, err := u.OrgRepository.FindOrganizationByID(pet.OrgID)
 	if err != nil {
 		return dto.PetOutputDTO{}, err
 	}

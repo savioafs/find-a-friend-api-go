@@ -1,6 +1,8 @@
 package usecase
 
-import "github.com/savioafs/find-a-friend-api-go/internal/entity"
+import (
+	"github.com/savioafs/find-a-friend-api-go/internal/entity"
+)
 
 type OrganizationUseCase struct {
 	OrganizationRepository entity.OrganizationStorer
