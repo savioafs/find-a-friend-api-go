@@ -31,7 +31,7 @@ func TestCreatePet(t *testing.T) {
 	as.NoError(err)
 	as.NotNil(pet)
 
-	query := "INSERT INTO pets \\(id, org_id, name, about, age, size, energy_level, dependency_level, enviroment, photos, requiriments_for_adoption\\) VALUES \\(\\$1, \\$2, \\$3, \\$4, \\$5, \\$6, \\$7, \\$8, \\$9, \\$10, \\$11\\) RETURNING id"
+	query := "INSERT INTO pets \\(id, org_id, name, about, age, size, energy_level, dependency_level, enviroment, photos, requirements_for_adoption\\) VALUES \\(\\$1, \\$2, \\$3, \\$4, \\$5, \\$6, \\$7, \\$8, \\$9, \\$10, \\$11\\) RETURNING id"
 	mock.ExpectPrepare(query).
 		ExpectQuery().
 		WithArgs(

@@ -1,0 +1,19 @@
+@baseURL = http://localhost:8080/pets
+
+
+### Create Pet
+POST {{baseURL}} HTTP/1.1
+Content-Type: application/json
+
+{
+   "org_id": "de2a3618-14d1-4322-b787-2c9254c0128b",
+   "name": "Buddy",
+   "about": "Friendly and playful dog",
+   "age": "2 years",
+   "size": "Medium",
+   "energy_level": "High",
+   "dependency_level": "Moderate",
+   "enviroment": "House with backyard",
+   "photos": ["https://example.com/photo1.jpg", "https://example.com/photo2.jpg"],
+   "requirements_for_adoption": ["Req 1", "Req 2", "Req 3"]
+}

@@ -17,7 +17,7 @@ func NewOrganizationRepository(db *sql.DB) *OrganizationRepository {
 }
 
 func (r *OrganizationRepository) FindOrganizationByID(id string) (*entity.Organization, error) {
-	stmt, err := r.DB.Prepare("SELECT id, name, owner, email, cep, city, whatsapp FROM organization WHERE id = $1")
+	stmt, err := r.DB.Prepare("SELECT id, name, owner, email, cep, city, whatsapp FROM organizations WHERE id = $1")
 	if err != nil {
 		return nil, err
 	}
@@ -27,13 +27,13 @@ func (r *OrganizationRepository) FindOrganizationByID(id string) (*entity.Organi
 	var organization entity.Organization
 
 	err = stmt.QueryRow(id).Scan(
-		organization.ID,
-		organization.Name,
-		organization.Owner,
-		organization.Email,
-		organization.CEP,
-		organization.City,
-		organization.Whatsapp)
+		&organization.ID,
+		&organization.Name,
+		&organization.Owner,
+		&organization.Email,
+		&organization.CEP,
+		&organization.City,
+		&organization.Whatsapp)
 	if err != nil {
 		return nil, err
 	}

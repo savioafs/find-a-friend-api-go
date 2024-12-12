@@ -10,7 +10,7 @@ type PetInputDTO struct {
 	DependencyLevel         string   `json:"dependency_level"`
 	Environment             string   `json:"enviroment"`
 	Photos                  []string `json:"photos"`
-	RequirementsForAdoption []string `json:"requiriments_for_adoption"`
+	RequirementsForAdoption []string `json:"requirements_for_adoption"`
 }
 
 type PetOutputDTO struct {
@@ -25,7 +25,7 @@ type PetOutputDTO struct {
 	DependencyLevel         string   `json:"dependency_level"`
 	Environment             string   `json:"enviroment"`
 	Photos                  []string `json:"photos"`
-	RequirementsForAdoption []string `json:"requiriments_for_adoption"`
+	RequirementsForAdoption []string `json:"requirements_for_adoption"`
 }
 
 type OrganizationInputDTO struct {

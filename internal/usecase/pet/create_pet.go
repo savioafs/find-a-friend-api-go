@@ -46,7 +46,7 @@ func (u *CreatePetUseCase) Execute(input dto.PetInputDTO) (dto.PetOutputDTO, err
 
 	petOutput := dto.PetOutputDTO{
 		ID:                      pet.ID,
-		Org:                     pet.OrgID,
+		Org:                     org.Name,
 		OrgWhatspp:              org.Whatsapp,
 		Name:                    pet.Name,
 		About:                   pet.About,

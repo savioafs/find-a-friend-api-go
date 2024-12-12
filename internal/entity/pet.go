@@ -16,7 +16,7 @@ var (
 	ErrDependencyLevelIsRequired         = errors.New("dependency level is required")
 	ErrEnvironmentIsRequired             = errors.New("enviroment is required")
 	ErrPhotosIsRequired                  = errors.New("photos are required")
-	ErrRequirementsForAdoptionIsRequired = errors.New("requiriments are required")
+	ErrRequirementsForAdoptionIsRequired = errors.New("requirements are required")
 )
 
 type Pet struct {
@@ -30,10 +30,10 @@ type Pet struct {
 	DependencyLevel         string   `db:"dependency_level"`
 	Environment             string   `db:"enviroment"`
 	Photos                  []string `db:"photos"`
-	RequirementsForAdoption []string `db:"requiriments_for_adoption"`
+	RequirementsForAdoption []string `db:"requirements_for_adoption"`
 }
 
-func NewPet(orgID, name, about, age, size, energyLevel, dependencyLevel, enviroment string, photos, requiriments []string) (*Pet, error) {
+func NewPet(orgID, name, about, age, size, energyLevel, dependencyLevel, enviroment string, photos, requirements []string) (*Pet, error) {
 	pet := &Pet{
 		ID:                      uuid.New().String(),
 		OrgID:                   orgID,
@@ -45,7 +45,7 @@ func NewPet(orgID, name, about, age, size, energyLevel, dependencyLevel, envirom
 		DependencyLevel:         dependencyLevel,
 		Environment:             enviroment,
 		Photos:                  photos,
-		RequirementsForAdoption: requiriments,
+		RequirementsForAdoption: requirements,
 	}
 
 	err := pet.Validate()
