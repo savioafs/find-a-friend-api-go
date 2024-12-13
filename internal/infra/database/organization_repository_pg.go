@@ -40,3 +40,12 @@ func (r *OrganizationRepository) FindOrganizationByID(id string) (*entity.Organi
 
 	return &organization, nil
 }
+
+func (r *OrganizationRepository) FindOrganizationByEmail(email string) (*entity.Organization, error) {
+	return nil, nil
+}
+func (r *OrganizationRepository) Save(org *entity.Organization) error { return nil }
+func (r *OrganizationRepository) UpdateOrganization(id string) (*entity.Organization, error) {
+	return nil, nil
+}
+func (r *OrganizationRepository) DeleteOrganization(id string) error { return nil }

@@ -11,8 +11,9 @@ type PetStorer interface {
 }
 
 type OrganizationStorer interface {
-	// Save(org *entity.Organization) error
+	Save(org *Organization) error
 	FindOrganizationByID(id string) (*Organization, error)
-	// UpdateOrganization(id string) (*entity.Organization, error)
-	// DeleteOrganization(id string) error
+	FindOrganizationByEmail(email string) (*Organization, error)
+	UpdateOrganization(id string) (*Organization, error)
+	DeleteOrganization(id string) error
 }
