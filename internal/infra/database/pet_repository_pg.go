@@ -71,3 +71,15 @@ func (r *PetRepositoryPG) FindPetByID(id string) (*entity.Pet, error) {
 
 	return &pet, nil
 }
+
+func (r *PetRepositoryPG) FindByCity(city string) ([]entity.Pet, error) { return nil, nil }
+
+func (r *PetRepositoryPG) AllByOrganization(org_id string) ([]entity.Pet, error) { return nil, nil }
+
+func (r *PetRepositoryPG) AllByCharacteristics(characteristics []string) ([]entity.Pet, error) {
+	return nil, nil
+}
+
+func (r *PetRepositoryPG) Update(id string) (*entity.Pet, error) { return nil, nil }
+
+func (r *PetRepositoryPG) Delete(id string) error { return nil }

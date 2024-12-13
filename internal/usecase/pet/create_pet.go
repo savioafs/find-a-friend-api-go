@@ -10,10 +10,10 @@ type CreatePetUseCase struct {
 	OrgRepository entity.OrganizationStorer
 }
 
-func NewCreatePetUseCase(repo entity.PetStorer, repoOrg entity.OrganizationStorer) *CreatePetUseCase {
+func NewCreatePetUseCase(petRepo entity.PetStorer, orgRepo entity.OrganizationStorer) *CreatePetUseCase {
 	return &CreatePetUseCase{
-		PetRepository: repo,
-		OrgRepository: repoOrg,
+		PetRepository: petRepo,
+		OrgRepository: orgRepo,
 	}
 }
 

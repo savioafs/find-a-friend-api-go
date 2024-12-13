@@ -9,12 +9,31 @@ import (
 )
 
 type PetHandler struct {
-	CreatePetUseCase *usecase.CreatePetUseCase
+	CreatePetUseCase                   *usecase.CreatePetUseCase
+	GetPetByIDUseCase                  *usecase.FindPetByIDUseCase
+	GetPetByCityUseCase                *usecase.FindPetsByCityUseCase
+	GetAllPetsByCharacteristicsUseCase *usecase.AllPetsByCharacteristicsUseCase
+	GetAllPetsByOrganizationUseCase    *usecase.AllPetsByOrganizationUseCase
+	UpdatePet                          *usecase.UpdatePetUseCase
+	DeletePet                          *usecase.DeletePet
 }
 
-func NewPetHandler(createPetUseCase *usecase.CreatePetUseCase) *PetHandler {
+func NewPetHandler(
+	createPetUseCase *usecase.CreatePetUseCase,
+	getPetByIDUseCase *usecase.FindPetByIDUseCase,
+	getPetByCityUseCase *usecase.FindPetsByCityUseCase,
+	getAllPetsByCharacteristicsUseCase *usecase.AllPetsByCharacteristicsUseCase,
+	getAllPetsByOrganizationUseCase *usecase.AllPetsByOrganizationUseCase,
+	updatePet *usecase.UpdatePetUseCase,
+	deletePet *usecase.DeletePet) *PetHandler {
 	return &PetHandler{
-		CreatePetUseCase: createPetUseCase,
+		CreatePetUseCase:                   createPetUseCase,
+		GetPetByIDUseCase:                  getPetByIDUseCase,
+		GetPetByCityUseCase:                getPetByCityUseCase,
+		GetAllPetsByCharacteristicsUseCase: getAllPetsByCharacteristicsUseCase,
+		GetAllPetsByOrganizationUseCase:    getAllPetsByOrganizationUseCase,
+		UpdatePet:                          updatePet,
+		DeletePet:                          deletePet,
 	}
 }
 
@@ -40,3 +59,10 @@ func (h *PetHandler) Create(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, output)
 }
+
+func (h *PetHandler) PetByID(c *gin.Context)              {}
+func (h *PetHandler) PetsByCity(c *gin.Context)           {}
+func (h *PetHandler) AllByCharacteristics(c *gin.Context) {}
+func (h *PetHandler) AllByOrganization(c *gin.Context)    {}
+func (h *PetHandler) Update(c *gin.Context)               {}
+func (h *PetHandler) Delete(c *gin.Context)               {}

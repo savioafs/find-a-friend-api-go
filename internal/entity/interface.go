@@ -3,11 +3,11 @@ package entity
 type PetStorer interface {
 	Save(pet *Pet) error
 	FindPetByID(id string) (*Pet, error)
-	// FindByCity(city string) ([]entity.Pet, error)
-	// AllByOrganization(org_id string) ([]entity.Pet, error)
-	// AllByCharacteristics(characteristics []string) ([]entity.Pet, error)
-	// Update(id string) (*entity.Pet, error)
-	// Delete(id string) error
+	FindByCity(city string) ([]Pet, error)
+	AllByOrganization(org_id string) ([]Pet, error)
+	AllByCharacteristics(characteristics []string) ([]Pet, error)
+	Update(id string) (*Pet, error)
+	Delete(id string) error
 }
 
 type OrganizationStorer interface {
