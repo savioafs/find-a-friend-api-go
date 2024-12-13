@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/savioafs/find-a-friend-api-go/internal/entity"
 	"github.com/savioafs/find-a-friend-api-go/internal/infra/database"
-	"github.com/savioafs/find-a-friend-api-go/internal/infra/web/handlers"
+	petHandler "github.com/savioafs/find-a-friend-api-go/internal/infra/web/handlers/pet"
 	petUseCase "github.com/savioafs/find-a-friend-api-go/internal/usecase/pet"
 )
 
@@ -15,36 +15,40 @@ func SetupRoutes(router *gin.Engine, dbConn *sql.DB) {
 	organizationRepository := database.NewOrganizationRepository(dbConn)
 
 	registerPetRoutes(router, petRepository, organizationRepository)
-	// registerOrganizationRoutes(router, organizationRepository)
+
 }
 
 func registerPetRoutes(router *gin.Engine, petRepo entity.PetStorer, orgRepo entity.OrganizationStorer) {
 	createPetUseCase := petUseCase.NewCreatePetUseCase(petRepo, orgRepo)
-	getPetByIDUseCase := petUseCase.NewFindPetByIDUseCase(petRepo, orgRepo)
-	getPetByCityUseCase := petUseCase.NewFindPetByFindPetsByCityUseCase(petRepo, orgRepo)
-	getAllPetsByCharacteristicsUseCase := petUseCase.NewAllPetsByCharacteristicsUseCase(petRepo, orgRepo)
-	getAllPetsByOrganizationUseCase := petUseCase.NewAllPetsByOrganizationUseCase(petRepo, orgRepo)
-	updatePet := petUseCase.NewUpdatePetUseCase(petRepo, orgRepo)
-	deletePet := petUseCase.NewDeletePet(petRepo, orgRepo)
+	createPetHandler := petHandler.NewCreatePetHandler(createPetUseCase)
 
-	petHandler := handlers.NewPetHandler(
-		createPetUseCase,
-		getPetByIDUseCase,
-		getPetByCityUseCase,
-		getAllPetsByCharacteristicsUseCase,
-		getAllPetsByOrganizationUseCase,
-		updatePet,
-		deletePet)
+	getPetByIDUseCase := petUseCase.NewFindPetByIDUseCase(petRepo, orgRepo)
+	getPetByIDUseHandler := petHandler.NewFindPetByIDHandler(getPetByIDUseCase)
+
+	getPetByCityUseCase := petUseCase.NewFindPetByFindPetsByCityUseCase(petRepo, orgRepo)
+	getPetByCityHandler := petHandler.NewFindPetByCityHandler(getPetByCityUseCase)
+
+	getAllPetsByCharacteristicsUseCase := petUseCase.NewAllPetsByCharacteristicsUseCase(petRepo, orgRepo)
+	getAllPetsByCharacteristicsHandle := petHandler.NewFindPetsByCharacteristicsHandler(getAllPetsByCharacteristicsUseCase)
+
+	getAllPetsByOrganizationUseCase := petUseCase.NewAllPetsByOrganizationUseCase(petRepo, orgRepo)
+	getAllPetsByOrganizationHandler := petHandler.NewFindPetsByOrganizationHandler(getAllPetsByOrganizationUseCase)
+
+	updatePetUseCase := petUseCase.NewUpdatePetUseCase(petRepo, orgRepo)
+	updatePetHandler := petHandler.NewUpdatePetHandler(updatePetUseCase)
+
+	deletePetUseCase := petUseCase.NewDeletePet(petRepo, orgRepo)
+	deletePetHandler := petHandler.NewDeletePetHandler(deletePetUseCase)
 
 	pet := router.Group("/pets")
 	{
 		// add middleware authenticator
-		pet.POST("/", petHandler.Create)
-		pet.GET("", petHandler.PetByID)
-		pet.GET("", petHandler.PetsByCity)
-		pet.GET("", petHandler.AllByCharacteristics)
-		pet.GET("", petHandler.AllByOrganization)
-		pet.PUT("", petHandler.Update)
-		pet.DELETE("", petHandler.Delete)
+		pet.POST("/", createPetHandler.Handle)
+		pet.GET("/:id", getPetByIDUseHandler.Handle)
+		pet.GET("/city/:city", getPetByCityHandler.Handle)
+		pet.GET("/characteristics", getAllPetsByCharacteristicsHandle.Handle)
+		pet.GET("/organization/:orgID", getAllPetsByOrganizationHandler.Handle)
+		pet.PUT("/:id", updatePetHandler.Handle)
+		pet.DELETE("/:id", deletePetHandler.Handle)
 	}
 }
