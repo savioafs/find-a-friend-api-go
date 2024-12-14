@@ -1,4 +1,4 @@
-@baseURL = http://localhost:8080/pets
+@baseURL = http://localhost:8080/pet
 
 
 ### Create Pet
@@ -17,3 +17,6 @@ Content-Type: application/json
    "photos": ["https://example.com/photo1.jpg", "https://example.com/photo2.jpg"],
    "requirements_for_adoption": ["Req 1", "Req 2", "Req 3"]
 }
+
+### Get Pet By ID
+GET {{baseURL}}/6428acea-bb5c-4b3a-a7d6-092d9bf9c74d HTTP/1.1

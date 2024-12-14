@@ -6,7 +6,7 @@ type PetStorer interface {
 	FindByCity(city string) ([]Pet, error)
 	AllByOrganization(org_id string) ([]Pet, error)
 	AllByCharacteristics(characteristics []string) ([]Pet, error)
-	Update(id string) (*Pet, error)
+	Update(id string, pet *Pet) (*Pet, error)
 	Delete(id string) error
 }
 

@@ -69,7 +69,6 @@ func registerOrganizationRoutes(router *gin.Engine, orgRepo entity.OrganizationS
 
 	organization := router.Group("/organization")
 	{
-
 		organization.POST("/generate_token", getJwtHanlder.Handle)
 	}
 }

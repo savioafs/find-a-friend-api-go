@@ -8,7 +8,7 @@ CREATE TABLE pets (
     energy_level VARCHAR(50),
     dependency_level VARCHAR(50),
     enviroment VARCHAR(255),
-    photos JSON,
-    requirements_for_adoption JSON,
+    photos TEXT[],
+    requirements_for_adoption TEXT[],
     FOREIGN KEY (org_id) REFERENCES organizations (id) ON DELETE CASCADE
 );
