@@ -1,4 +1,5 @@
-@baseURL = http://localhost:8080/pet
+@baseURL = http://localhost:8080/pet/
+@pet_id = d360488c-00ae-469b-9ccd-02b2dfdbdac7
 
 
 ### Create Pet
@@ -19,4 +20,7 @@ Content-Type: application/json
 }
 
 ### Get Pet By ID
-GET {{baseURL}}/6428acea-bb5c-4b3a-a7d6-092d9bf9c74d HTTP/1.1
+GET {{baseURL}}{{pet_id}} HTTP/1.1
+
+### Get Pets By City
+GET {{baseURL}}city/Vila%20Velha HTTP/1.1

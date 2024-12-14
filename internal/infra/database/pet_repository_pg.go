@@ -63,7 +63,7 @@ func (r *PetRepositoryPG) FindPetByID(id string) (*entity.Pet, error) {
 }
 
 func (r *PetRepositoryPG) FindByCity(city string) ([]entity.Pet, error) {
-	query := "SELECT p.* FROM pet p JOIN organization o ON p.organization_id = o.id WHERE o.city = $1"
+	query := "SELECT p.* FROM pets p JOIN organizations o ON p.org_id = o.id WHERE o.city = $1"
 
 	rows, err := r.DB.Query(query, city)
 	if err != nil {
@@ -87,8 +87,8 @@ func (r *PetRepositoryPG) FindByCity(city string) ([]entity.Pet, error) {
 			&pet.EnergyLevel,
 			&pet.DependencyLevel,
 			&pet.Environment,
-			&pet.Photos,
-			&pet.RequirementsForAdoption)
+			pq.Array(&pet.Photos),
+			pq.Array(&pet.RequirementsForAdoption))
 
 		if err != nil {
 			return nil, err
